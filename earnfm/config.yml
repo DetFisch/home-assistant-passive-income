@@ -1,0 +1,15 @@
+name: "EarnFM"
+slug: "earnfm"
+description: "Earn money online,passively."
+version: "latest"
+image: earnfm/earnfm-client
+init: false
+legacy: true
+arch:
+  - aarch64
+  - amd64
+  - armv7
+options:
+  EARNFM_TOKEN: ""
+schema:
+  EARNFM_TOKEN: str

@@ -17,14 +17,14 @@ you directly contribute to future updates and maintenance.
 
 - [Honeygain](https://r.honeygain.me/BULINCBB47)
 - [EarnApp](https://earnapp.com/i/4LLxaYrb)
+- [Pawns.app](https://pawns.app/?r=7359984)
 - [Grass](https://app.getgrass.io/register/?referralCode=nQQpxyv6mNel0H8)
 - [Traffmonetizer](https://traffmonetizer.com/?aff=1805975)
-- [Pawns.app](https://pawns.app/?r=7359984)
 - [Repocket](https://link.repocket.com/TLMq)
 - [PacketStream](https://packetstream.io/?psr=6eJ7)
+- [earn.fm](https://earn.fm/ref/JEDRBQEQ)
 - [BitPing](https://bitping.com/earn)
 - [ProxyRack](https://peer.proxyrack.com/ref/7fx0rj00pt1noye23c7r2gw1sok8utlhhsjdmwys) - WIP
-- [earn.fm](https://earn.fm/ref/JEDRBQEQ) - WIP
 
 ## ⚙️ Installation Guide
 
