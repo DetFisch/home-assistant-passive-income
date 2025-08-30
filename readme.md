@@ -24,7 +24,7 @@ you directly contribute to future updates and maintenance.
 - [PacketStream](https://packetstream.io/?psr=6eJ7)
 - [earn.fm](https://earn.fm/ref/JEDRBQEQ)
 - [BitPing](https://bitping.com/earn)
-- [ProxyRack](https://peer.proxyrack.com/ref/7fx0rj00pt1noye23c7r2gw1sok8utlhhsjdmwys) - WIP
+- [ProxyRack](https://peer.proxyrack.com/ref/7fx0rj00pt1noye23c7r2gw1sok8utlhhsjdmwys)
 
 ## ⚙️ Installation Guide
 
