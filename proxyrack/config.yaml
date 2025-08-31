@@ -14,9 +14,7 @@ options:
   UUID: ""
   API_KEY: ""
   DEVICE_NAME: "HomeAssistant"
-  PR_SCRIPT_URL: ""
 schema:
   UUID: str
   API_KEY: str
   DEVICE_NAME: str
-  PR_SCRIPT_URL: str
