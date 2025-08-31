@@ -9,12 +9,14 @@ arch:
   - aarch64
   - armv7
   - armhf
-image: proxyrack/pop
+image: detfisch/proxyrack-pop
 options:
   UUID: ""
   API_KEY: ""
   DEVICE_NAME: "HomeAssistant"
+  PR_SCRIPT_URL: ""
 schema:
   UUID: str
   API_KEY: str
   DEVICE_NAME: str
+  PR_SCRIPT_URL: str

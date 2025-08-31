@@ -1,0 +1,58 @@
+name: Inspect upstream proxyrack/pop
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull upstream image
+        run: |
+          docker pull proxyrack/pop:latest
+
+      - name: Inspect image config
+        run: |
+          docker inspect proxyrack/pop:latest --format '{{json .Config}}' | jq . | tee upstream-pop-inspect.json
+
+      - name: Show entrypoint/cmd
+        run: |
+          echo "Entrypoint:" && jq -r .Entrypoint[] upstream-pop-inspect.json || true
+          echo "Cmd:" && jq -r .Cmd[] upstream-pop-inspect.json || true
+
+      - name: Extract likely startup scripts
+        run: |
+          cid=$(docker create proxyrack/pop:latest true)
+          trap 'docker rm -f "$cid" >/dev/null 2>&1 || true' EXIT
+          mkdir -p extracted
+          # Try common paths first
+          for p in /entrypoint.sh /app/entrypoint.sh /start.sh /app/start.sh /run.sh /app/run.sh; do
+            if docker cp "$cid:$p" "extracted${p}" 2>/dev/null; then
+              echo "Extracted $p"
+            fi
+          done
+          # As fallback, list all shell scripts in /app and / (top-level)
+          docker cp "$cid:/app" extracted/app 2>/dev/null || true
+          docker cp "$cid:/" extracted/root 2>/dev/null || true
+          echo "Listing candidate scripts (first 200 lines if found):"
+          for f in $(find extracted -maxdepth 3 -type f \( -name "*.sh" -o -name "entrypoint*" -o -name "start*" -o -name "run*" \) 2>/dev/null | head -n 20); do
+            echo "--- $f ---"; head -n 200 "$f" || true; echo;
+          done
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: upstream-pop-extract
+          path: |
+            upstream-pop-inspect.json
+            extracted/**
+          if-no-files-found: warn
+

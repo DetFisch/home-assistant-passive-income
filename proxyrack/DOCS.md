@@ -1,6 +1,6 @@
 # Home Assistant ProxyRack Add-on
 
-This add-on uses the official Docker image `proxyrack/pop` to run a Proxyrack PoP client.
+This add-on runs a Proxyrack PoP client using a multi-arch wrapper image that downloads and launches the official client script at runtime.
 
 ## Quick Configuration Guide
 
@@ -10,11 +10,14 @@ This add-on uses the official Docker image `proxyrack/pop` to run a Proxyrack Po
    - `UUID`: your generated device UUID (required)
    - `API_KEY`: your API key (optional)
    - `DEVICE_NAME`: display name for the device (optional, defaults to "HomeAssistant")
+   - `PR_SCRIPT_URL`: URL of the official Proxyrack client script (required on Raspberry Pi/ARM; see notes)
 4. Save the configuration and start the add-on.
 5. Check the logs to ensure the client starts and, if `API_KEY` is set, that the device is added to your dashboard.
 
 ## Notes
 
-- Architectures: amd64, aarch64, armv7, armhf. Running on Raspberry Pi is possible but not recommended and may require additional configuration (e.g., cross-architecture emulation). Stability and performance can vary.
+- Architectures: amd64, aarch64, armv7, armhf. On Raspberry Pi, set `PR_SCRIPT_URL` so the wrapper can download the official client script at runtime.
 - Environment variables match the Docker Hub example: `UUID`, `API_KEY`, `DEVICE_NAME`.
+- To discover the official script URL from the upstream image, run the included GitHub Action "Inspect upstream proxyrack/pop" in your fork. It uploads the likely entrypoint/start scripts as artifacts and logs their contents.
+- After confirming the script URL, add it as `PR_SCRIPT_URL` in the add-on configuration.
 - For details and the latest usage notes, see https://hub.docker.com/r/proxyrack/pop
