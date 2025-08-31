@@ -1,4 +1,4 @@
-name: Build and push detfisch/proxyrack-pop (multi-arch)
+name: Build and push jonnx/proxyrack-pop (multi-arch)
 
 on:
   workflow_dispatch:
